@@ -30,10 +30,9 @@ class Login(APIView):
 
             # JWT 토큰 생성
             refresh = RefreshToken.for_user(user)
-            access_token = str(refresh.access_token)
 
             return Response({
-                'token': access_token
+                'token': str(refresh)
             }, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
