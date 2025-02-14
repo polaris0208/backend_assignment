@@ -3,10 +3,14 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
+DRF_SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+SECRET_KEY = DRF_SECRET_KEY
 DEBUG = True
 ALLOWED_HOSTS = []
+
+AUTH_USER_MODEL = "accounts.User"
 
 INSTALLED_APPS = [
     "django.contrib.admin",

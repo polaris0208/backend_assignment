@@ -1,18 +1,15 @@
 services:
-  web:
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
-    env_file:
-      - .env
+    ports:
+      - "8000:8000"
     environment:
-      DJANGO_SUPERUSER_USERNAME: $(DJANGO_SUPERUSER_USERNAME)
-      DJANGO_SUPERUSER_EMAIL: $(DJANGO_SUPERUSER_EMAIL)
-      DJANGO_SUPERUSER_PASSWORD: $(DJANGO_SUPERUSER_PASSWORD)
+      DJANGO_SECRET_KEY: $(DJANGO_SECRET_KEY)
     command: >
       sh -c "
       python manage.py makemigrations &&
       python manage.py migrate &&
-      python manage.py createsuperuser --noinput || true &&
       python manage.py runserver 0.0.0.0:8000
       "
