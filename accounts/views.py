@@ -1,9 +1,11 @@
+from .custom_schema import signup_schema, login_schema
 from rest_framework import status
-from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import SignUpSerializer, LoginSerializer
+from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+from .serializers import SignUpSerializer, LoginSerializer
 
+@signup_schema
 class SignUp(APIView):
     def post(self, request, *args, **kwargs):
         serializer = SignUpSerializer(data=request.data)
@@ -20,7 +22,8 @@ class SignUp(APIView):
             }, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
+@login_schema
 class Login(APIView):
     def post(self, request, *args, **kwargs):
         serializer = LoginSerializer(data=request.data)
