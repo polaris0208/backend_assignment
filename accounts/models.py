@@ -8,6 +8,7 @@ class Role(models.Model):
         return self.name
 
 class User(AbstractUser):
+    username = models.CharField(max_length=150, unique=True, blank=True)
     nickname = models.CharField(max_length=50, unique=True, blank=False)
     roles = models.ManyToManyField(Role, related_name='users')
 
