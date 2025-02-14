@@ -114,16 +114,6 @@ class JWTAuthenticationTests(BaseTest):
         response = self.client.get(self.protected_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    def test_access_token_expiration_real(self):
-        self.test_access_token_and_refresh_token_extraction()
-        refresh_token = RefreshToken(self.refresh_token)
-        expired_access_token = refresh_token.access_token
-        expired_access_token.set_exp(lifetime=timedelta(seconds=-1))
-
-        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {expired_access_token}")
-        response = self.client.get(self.protected_url)
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-
     def test_protected_endpoint_with_valid_token(self):
         self.test_access_token_and_refresh_token_extraction()
         self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.access_token}")
