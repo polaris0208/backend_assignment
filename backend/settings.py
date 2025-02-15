@@ -7,8 +7,8 @@ DRF_SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = DRF_SECRET_KEY
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ["43.200.4.212"]
 
 AUTH_USER_MODEL = "accounts.User"
 
