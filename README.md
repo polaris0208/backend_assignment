@@ -833,7 +833,7 @@
   - **AWS Management Console**에서 EC2 인스턴스를 생성
     - Ubuntu 24.04 LTS AMI 선택
     - 인스턴스 유형은 `t2.micro` 선택 (프리티어)
-    - 보안 그룹 설정 시, HTTP(80), HTTPS(8000), SSH(22) 포트 열기
+    - 보안 그룹 설정 시, HTTP(80), TCP(8000), SSH(22) 포트 열기
 
   ## Django 배포 설정
   - `settings.py`
